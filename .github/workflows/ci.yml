@@ -37,8 +37,6 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -53,6 +51,7 @@ jobs:
         with:
           push: false
           tags: user/app:latest
+          load: true
       - name: Show local images
         run: docker images
         continue-on-error: true
